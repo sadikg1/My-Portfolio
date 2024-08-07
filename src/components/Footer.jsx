@@ -19,7 +19,7 @@ const Footer = () => {
               python programming.
             </p>
           </div>
-          <div className="flex-1 w-full">
+          {/* <div className="flex-1 w-full">
             <form className="flex items-center justify-center">
               <input
                 type="email"
@@ -35,7 +35,7 @@ const Footer = () => {
                 Send
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
 
         <div
