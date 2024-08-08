@@ -11,10 +11,32 @@ const Contact = () => {
     e.preventDefault();
     const name = form.current.user_name.value.trim();
     const email = form.current.user_email.value.trim();
+    const phone = form.current.user_phone.value.trim();
     const message = form.current.message.value.trim();
 
-    if (!name || !email || !message) {
-      toast.error("All fields are required.");
+    // Name validation
+    if (!name || name.length < 3) {
+      toast.error("Name must be at least 3 characters long.");
+      return;
+    }
+
+    // Email validation
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email || !emailPattern.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    // Phone validation
+    const phonePattern = /^[0-9]{10}$/; // Adjust as needed (e.g., 10 digits)
+    if (!phone || !phonePattern.test(phone)) {
+      toast.error("Please enter a valid phone number.");
+      return;
+    }
+
+    // Message validation
+    if (!message) {
+      toast.error("Message cannot be empty.");
       return;
     }
 
@@ -33,6 +55,7 @@ const Contact = () => {
         }
       );
   };
+
   return (
     <div className="bg-black text-white py-20" id="contact">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
@@ -50,17 +73,17 @@ const Contact = () => {
               partnership opportunities.
             </p>
             <div className="mb-4 mt-8">
-              <FaEnvelope className="inline-block text-green-400 mr-2"></FaEnvelope>
+              <FaEnvelope className="inline-block text-green-400 mr-2" />
               <a href="mailto:sadeekg133@gmail.com" className="hover:underline">
                 sadeekg133@gmail.com
               </a>
             </div>
             <div className="mb-4">
-              <FaPhone className="inline-block text-green-400 mr-2"></FaPhone>
+              <FaPhone className="inline-block text-green-400 mr-2" />
               <span>+977 9861546865</span>
             </div>
             <div className="mb-4">
-              <FaMapMarkedAlt className="inline-block text-green-400 mr-2"></FaMapMarkedAlt>
+              <FaMapMarkedAlt className="inline-block text-green-400 mr-2" />
               <span>Godawari-13, Lalitpur, Bagmati, Nepal</span>
             </div>
           </div>
@@ -88,6 +111,18 @@ const Contact = () => {
                     focus:border-green-400"
                   placeholder="Enter Your Email"
                   name="user_email"
+                />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block mb-2">
+                  Your Phone Number
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none
+                    focus:border-green-400"
+                  placeholder="Enter Your Phone Number"
+                  name="user_phone"
                 />
               </div>
               <div>
